@@ -1,4 +1,4 @@
-# vue-login-signup-ui
+# exam-application
 
 ## Project setup
 ```
