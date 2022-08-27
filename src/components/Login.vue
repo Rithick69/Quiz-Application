@@ -25,15 +25,19 @@
 
 <script>
 import loginDetails from '@/assets/model/LoginDetails'
+import store from '../store/store';
+import { mapState } from 'vuex';
 export default {
+  
   data() {
     return {
+      count:0,
       loginInfo: new loginDetails(),
       showErrorMessage:false,
       errorMessage:'',
       // in real senarion we will get this data from api call
       validUserCredentials:[
-          {"username": "tcs1@tcs.com","password":"Tcs1",},
+          {"username": "tcs@tcs.com","password":"tcs",},
           {"username": "tcs2@tcs.com","password":"Tcs1"},
           {"username": "1","password":"1"}
       ],
@@ -51,8 +55,11 @@ export default {
       let password = this.loginInfo.password.trim();
       let findUserDetails = this.validUserCredentials.find(aa => aa.username == userId && aa.password == password);
       if(findUserDetails){
-         localStorage.setItem('userName', this.loginInfo.email);
-         this.$router.push({ name: 'dashboard'});
+        store.dispatch({
+            type: 'addUserDetail',
+            userName: findUserDetails.username
+          });
+        this.$router.push({ name: 'dashboard'});
       }
       else{
         this.showError('Invalid User!!!');

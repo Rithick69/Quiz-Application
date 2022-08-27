@@ -1,24 +1,25 @@
 <template>
   <fragment>
     <div class="container">
-    <div  v-for="question in questions" :key="question.id">
-        <div class="col-12">
-          <base-card>
-            <h1>{{question.subject}}</h1>
-            <p>Total number of questions {{question.totalQuestions}}</p>
-            <p>{{question.completedQuestions}} of {{question.totalQuestions}} questions completed</p>
-            <base-button  :mode="bottonClass"  @click="startExam(question.id)">Start Exam</base-button>
-          </base-card>
+      <div class="row">
+        <div class="col-md-4" v-for="question in questions" :key="question.id">
+            
+              <base-card>
+                <h1>{{question.subject}}</h1>
+                <p>Total number of questions {{question.totalQuestions}}</p>
+                <p>{{question.completedQuestions}} of {{question.totalQuestions}} questions completed</p>
+                <base-button  :mode="bottonClass"  @click="startExam(question.id)">Start Exam</base-button>
+              </base-card>
+            
         </div>
-      
-    </div>
-      
+          </div>
     </div>
   </fragment>
 </template>
 
 <script>
 import BaseButton from './UI/BaseButton.vue';
+import store from '../store/store';
 export default {
   components: { BaseButton },
   data() {
@@ -42,22 +43,27 @@ export default {
   },
   methods: {
     startExam(courseId){
-      alert("Assignment To Complete This Task");
+      alert("Assignment:- Complete This Task");
     },
     confirmError(){
         this.inputIsInvalid = false;
      },
     isUserAuthenticated(){
-        if (localStorage.getItem("userName")) {
         try {
-          this.userName = JSON.parse(localStorage.getItem("userName"));
+          let loggedUser = localStorage.getItem("userName");
+           if (loggedUser) {
+                  let user = loggedUser;
+                  store.dispatch({
+                    type: 'addUserDetail',
+                    userName: user
+                  });
+           }
+           else{
+            this.$router.push({ name: 'login'});
+           }
         } catch (e) {
            this.$router.push({ name: 'login'});
         }
-      }
-      else{
-         this.$router.push({ name: 'login'});
-      }
     }
   },
 };

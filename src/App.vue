@@ -1,8 +1,7 @@
 <template>
 <fragment>
-    <the-header title="Learning Guide"></the-header>
-    <!-- <login></login> -->
-     <router-view/>
+    <the-header title="Examination Quiz"></the-header>
+    <router-view/>
 </fragment>
 </template>
 
