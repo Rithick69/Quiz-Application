@@ -1,7 +1,45 @@
-
+<script>
+import store from '../store/store';
+import QuizButton from './UI/QuizButton.vue';
+export default {
+    components: { QuizButton },
+    computed:{
+        bottonClass(){
+                return null;
+        },
+    },
+  created(){
+    this.isUserAuthenticated();
+  },
+  methods: {
+    backtodashboard(){
+     this.$router.push({ name: 'dashboard'})
+    },
+    confirmError(){
+        this.inputIsInvalid = false;
+     },
+    isUserAuthenticated(){
+        try {
+          let loggedUser = localStorage.getItem("userName");
+           if (loggedUser) {
+                  let user = loggedUser;
+                  store.dispatch({
+                    type: 'addUserDetail',
+                    userName: user
+                  });
+           }
+           else{
+            this.$router.push({ name: 'login'});
+           }
+        } catch (e) {
+           this.$router.push({ name: 'login'});
+        }
+    }
+  },
+};
+</script>
 <script setup>
-import BaseButton from './UI/BaseButton.vue';
-import { ref, computed } from 'vue'
+import { ref, computed } from 'vue';
 const questions = ref([
   {
 	question: 'What is Vue?',
@@ -70,6 +108,7 @@ const NextQuestion = () => {
 		<h1>The Quiz</h1>
 		
 		<section class="quiz" v-if="!quizCompleted">
+           
 			<div class="quiz-info">
 				<span class="question">{{ getCurrentQuestion.question }}</span>
 				<span class="score">Score {{ score }}/{{ questions.length }}</span>
@@ -104,7 +143,7 @@ const NextQuestion = () => {
 				</label>
 			</div>
 			
-			<button 
+			<quiz-button
 				@click="NextQuestion" 
 				:disabled="!getCurrentQuestion.selected">
 				{{ 
@@ -114,13 +153,14 @@ const NextQuestion = () => {
 							? 'Select an option'
 							: 'Next question'
 				}}
-			</button>
+			</quiz-button>
+            
 		</section>
 
 		<section v-else>
 			<h2>You have finished the quiz!</h2>
 			<p>Your score is {{ score }}/{{ questions.length }}</p>
-			<base-button  :mode="bottonClass"  @click="submitLoginInfo()">Login</base-button>
+			<quiz-button  :mode="bottonClass"  @click="backtodashboard()">Login</quiz-button>
 		</section>
 	</main>
 </template>
@@ -132,10 +172,7 @@ const NextQuestion = () => {
 	box-sizing: border-box;
 	font-family: 'Montserrat', sans-serif;
 }
-body {
-	background-color: #271c36;
-	color: #FFF;
-}
+
 .app {
 	display: flex;
 	flex-direction: column;
@@ -148,7 +185,8 @@ h1 {
 	margin-bottom: 2rem;
 }
 .quiz {
-	background-color: #382a4b;
+	background-color: transparent;
+    border: 1px solid black;
 	padding: 1rem;
 	width: 100%;
 	max-width: 640px;
@@ -159,7 +197,7 @@ h1 {
 	margin-bottom: 1rem;
 }
 .quiz-info .question {
-	color: #8F8F8F;
+	color: black;
 	font-size: 1.25rem;
 }
 .quiz-info.score {
@@ -172,13 +210,14 @@ h1 {
 .option {
 	padding: 1rem;
 	display: block;
-	background-color: #271c36;
+	background-color: grey;
 	margin-bottom: 0.5rem;
 	border-radius: 0.5rem;
 	cursor: pointer;
 }
 .option:hover {
 	background-color: #2d213f;
+    color:  white;
 }
 .option.correct {
 	background-color: #2cce7d;
@@ -195,22 +234,7 @@ h1 {
 .option input {
 	display: none;
 }
-button {
-	appearance: none;
-	outline: none;
-	border: none;
-	cursor: pointer;
-	padding: 0.5rem 1rem;
-	background-color: #2cce7d;
-	color: #2d213f;
-	font-weight: 700;
-	text-transform: uppercase;
-	font-size: 1.2rem;
-	border-radius: 0.5rem;
-}
-button:disabled {
-	opacity: 0.5;
-}
+
 h2 {
 	font-size: 2rem;
 	margin-bottom: 2rem;
