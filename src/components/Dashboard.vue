@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     startExam(courseId){
-      alert("Assignment:- Complete This Task");
+     this.$router.push({ name: `${courseId}`})
     },
     confirmError(){
         this.inputIsInvalid = false;
