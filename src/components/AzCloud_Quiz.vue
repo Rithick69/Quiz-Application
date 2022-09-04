@@ -1,6 +1,7 @@
 <script>
 import store from '../store/store';
 import QuizButton from './UI/QuizButton.vue';
+
 export default {
     components: { QuizButton },
     computed:{
@@ -39,6 +40,7 @@ export default {
 };
 </script>
 <script setup>
+
 import { ref, computed } from 'vue';
 const questions = ref([
   {
@@ -107,7 +109,7 @@ const NextQuestion = () => {
 	<main class="app">
 		<h1>The Quiz</h1>
 		
-		<section class="quiz" v-if="!quizCompleted">
+		<section class="quiz"  v-if="!quizCompleted">
            
 			<div class="quiz-info">
 				<span class="question">{{ getCurrentQuestion.question }}</span>
@@ -158,9 +160,9 @@ const NextQuestion = () => {
 		</section>
 
 		<section v-else>
-			<h2>You have finished the quiz!</h2>
-			<p>Your score is {{ score }}/{{ questions.length }}</p>
-			<quiz-button  :mode="bottonClass"  @click="backtodashboard()">Login</quiz-button>
+			<quiz-h2>You have finished the quiz!</quiz-h2>
+			<quiz-p>Your score is {{ score }}/{{ questions.length }}</quiz-p>
+			<quiz-button  :mode="bottonClass"  @click="backtodashboard()">Back To Home</quiz-button>
 		</section>
 	</main>
 </template>
@@ -172,9 +174,8 @@ const NextQuestion = () => {
 	box-sizing: border-box;
 	font-family: 'Montserrat', sans-serif;
 }
-
-.app {
-	display: flex;
+.app{
+    display: flex;
 	flex-direction: column;
 	align-items: center;
 	padding: 2rem;
@@ -184,7 +185,17 @@ h1 {
 	font-size: 2rem;
 	margin-bottom: 2rem;
 }
-.quiz {
+h2 {
+	font-size: 2rem;
+	margin-bottom: 2rem;
+	text-align: center;
+}
+p {
+	color: #8F8F8F;
+	font-size: 1.5rem;
+	text-align: center;
+}
+.quiz{
 	background-color: transparent;
     border: 1px solid black;
 	padding: 1rem;
@@ -210,7 +221,7 @@ h1 {
 .option {
 	padding: 1rem;
 	display: block;
-	background-color: grey;
+	background-color: burlywood;
 	margin-bottom: 0.5rem;
 	border-radius: 0.5rem;
 	cursor: pointer;
@@ -235,14 +246,4 @@ h1 {
 	display: none;
 }
 
-h2 {
-	font-size: 2rem;
-	margin-bottom: 2rem;
-	text-align: center;
-}
-p {
-	color: #8F8F8F;
-	font-size: 1.5rem;
-	text-align: center;
-}
 </style>

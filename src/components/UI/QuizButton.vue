@@ -27,6 +27,7 @@ button {
 	text-transform: uppercase;
 	font-size: 1.2rem;
 	border-radius: 0.5rem;
+    font-family: 'Montserrat', sans-serif;
 }
 button:disabled {
 	opacity: 0.5;
