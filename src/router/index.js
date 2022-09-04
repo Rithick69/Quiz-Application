@@ -29,6 +29,36 @@ const routes = [
     name: "1",
     component: () => import("../components/AzCloud_Quiz.vue"),
   },
+  {
+    path: "/azure-cloud-quiz",
+    name: "1",
+    component: () => import("../components/AzCloud_Quiz.vue"),
+  },
+  {
+    path: "/google-cloud-quiz",
+    name: "2",
+    component: () => import("../components/GCloud_Quiz.vue"),
+  },
+  {
+    path: "/dot-net-quiz",
+    name: "3",
+    component: () => import("../components/DN_Quiz.vue"),
+  },
+  {
+    path: "/java-quiz",
+    name: "4",
+    component: () => import("../components/JAVA_Quiz.vue"),
+  },
+  {
+    path: "/vue-quiz",
+    name: "5",
+    component: () => import("../components/Vue_Quiz.vue"),
+  },
+  {
+    path: "/angular-quiz",
+    name: "6",
+    component: () => import("../components/Angular_Quiz.vue"),
+  },
 ];
 
 const router = new VueRouter({
