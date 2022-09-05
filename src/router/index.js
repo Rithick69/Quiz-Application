@@ -30,11 +30,6 @@ const routes = [
     component: () => import("../components/AzCloud_Quiz.vue"),
   },
   {
-    path: "/azure-cloud-quiz",
-    name: "1",
-    component: () => import("../components/AzCloud_Quiz.vue"),
-  },
-  {
     path: "/google-cloud-quiz",
     name: "2",
     component: () => import("../components/GCloud_Quiz.vue"),
