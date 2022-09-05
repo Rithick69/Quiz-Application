@@ -106,10 +106,13 @@ const NextQuestion = () => {
 </script>
 
 <template>
-	<main class="app">
-		<h1>The Quiz</h1>
+<fragment>
+	<quiz-app>
+        
+		<h1>Azure Cloud Quiz</h1>
+        
 		
-		<section class="quiz"  v-if="!quizCompleted">
+		<section v-if="!quizCompleted">
            
 			<div class="quiz-info">
 				<span class="question">{{ getCurrentQuestion.question }}</span>
@@ -160,48 +163,16 @@ const NextQuestion = () => {
 		</section>
 
 		<section v-else>
-			<quiz-h2>You have finished the quiz!</quiz-h2>
-			<quiz-p>Your score is {{ score }}/{{ questions.length }}</quiz-p>
+			<h2>You have finished the quiz!</h2>
+			<p><strong>Your score is {{ score }}/{{ questions.length }}</strong></p>
 			<quiz-button  :mode="bottonClass"  @click="backtodashboard()">Back To Home</quiz-button>
 		</section>
-	</main>
+	</quiz-app>
+    </fragment>
 </template>
 
-<style scoped>
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Montserrat', sans-serif;
-}
-.app{
-    display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 2rem;
-	height: 100vh;
-}
-h1 {
-	font-size: 2rem;
-	margin-bottom: 2rem;
-}
-h2 {
-	font-size: 2rem;
-	margin-bottom: 2rem;
-	text-align: center;
-}
-p {
-	color: #8F8F8F;
-	font-size: 1.5rem;
-	text-align: center;
-}
-.quiz{
-	background-color: transparent;
-    border: 1px solid black;
-	padding: 1rem;
-	width: 100%;
-	max-width: 640px;
-}
+<style>
+
 .quiz-info {
 	display: flex;
 	justify-content: space-between;

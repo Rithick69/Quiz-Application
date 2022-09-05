@@ -25,7 +25,7 @@ button {
 	color:  white;
 	font-weight: 700;
 	text-transform: uppercase;
-	font-size: 1.2rem;
+	font-size: 1rem;
 	border-radius: 0.5rem;
     font-family: 'Montserrat', sans-serif;
 }
