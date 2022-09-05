@@ -9,10 +9,7 @@
                     <p></p>
                     </h2>
             </section>
-        </slot>
-        
-        
-       
+        </slot> 
     </main>
 </template>
 
