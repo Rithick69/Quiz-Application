@@ -165,14 +165,20 @@ const NextQuestion = () => {
 		<section v-else>
 			<h2>You have finished the quiz!</h2>
 			<p><strong>Your score is {{ score }}/{{ questions.length }}</strong></p>
+			<div class="button-center">
 			<quiz-button  :mode="bottonClass"  @click="backtodashboard()">Back To Home</quiz-button>
+			</div>
 		</section>
 	</quiz-app>
     </fragment>
 </template>
 
 <style>
-
+.button-center{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
 .quiz-info {
 	display: flex;
 	justify-content: space-between;
